@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>When U Were Born</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="assets/css/styles.css" media="screen">
+ 
+
+</head>
+
+<body>
+  <div class= "container">
+
+      <div class="navbar-header">
+          <a class="navbar-brand" href="index.html" id="logo"><h1>When U Were Born</h1></a>
+        </div>
+
+        <button type="button" class="navbar-toggler collapsed ml-auto" data-toggle="collapse" data-target="#page-nav-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+
+    <div class="homepage-hero-module">
+        <div class="video-container">
+            <div class="filter"></div>
+            <video autoplay loop class="fillWidth">
+                <source src="assets\After-Party\Mp4\After-Party.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+                <source src="assets\After-Party\WEBM\After-Party.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+            </video>
+            <div class="poster hidden">
+                <img src="assets\After-Party\Snapshots" alt="">
+            </div>
+        </div>
+
+        <section class="row">
+            <div class="col-md-8">
+              <form class="block form-horizontal">
+                <h1 class="block-header">What is your birthday?</h1>
+                <div class="form-group">
+                  <label for="name" class="col-md-12 control-label">Name</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="name" placeholder="Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="col-md-12 control-label">Birthday</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="email" placeholder="Email">
+                  </div>
+                </div>
+                
+                <button class="submit-btn"href="contact.html">Submit</button>
+              </form>            
+          </section>
+</div>
+ 
+  
+   <!-- jQuery -->
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+   <!-- Script -->
+   <script type="text/javascript">
+   
+   //jQuery is required to run this code
+$( document ).ready(function() {
+
+scaleVideoContainer();
+
+initBannerVideoSize('.video-container .poster img');
+initBannerVideoSize('.video-container .filter');
+initBannerVideoSize('.video-container video');
+
+$(window).on('resize', function() {
+    scaleVideoContainer();
+    scaleBannerVideoSize('.video-container .poster img');
+    scaleBannerVideoSize('.video-container .filter');
+    scaleBannerVideoSize('.video-container video');
+});
+
+});
+
+function scaleVideoContainer() {
+
+var height = $(window).height() + 5;
+var unitHeight = parseInt(height) + 'px';
+$('.homepage-hero-module').css('height',unitHeight);
+
+}
+
+function initBannerVideoSize(element){
+
+$(element).each(function(){
+    $(this).data('height', $(this).height());
+    $(this).data('width', $(this).width());
+});
+
+scaleBannerVideoSize(element);
+
+}
+
+function scaleBannerVideoSize(element){
+
+var windowWidth = $(window).width(),
+windowHeight = $(window).height() + 5,
+videoWidth,
+videoHeight;
+
+// console.log(windowHeight);
+
+$(element).each(function(){
+    var videoAspectRatio = $(this).data('height')/$(this).data('width');
+
+    $(this).width(windowWidth);
+
+    if(windowWidth < 1000){
+        videoHeight = windowHeight;
+        videoWidth = videoHeight / videoAspectRatio;
+        $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+
+        $(this).width(videoWidth).height(videoHeight);
+    }
+
+    $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+
+});
+}
+
+   
+   </script>
+ 
+</body>
+
+</html>
